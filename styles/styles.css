@@ -1,0 +1,579 @@
+@import url("https://fonts.googleapis.com/css2?family=Yellowtail&display=swap");
+
+:root {
+  --background: #f4f6fa;
+  --cards: #e9ebef;
+  --todo: white;
+  --inprogress: white;
+  --done: white;
+  --todo2: white;
+  --inprogress2: white;
+  --done2: white;
+}
+
+body {
+  /* font-family: "Yellowtail", sans-serif; */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  min-height: 100vh;
+  /* background-image: url("../img/back1.png"); */
+  /* url("https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100") */
+  /* background-size: 25%;
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: calc(100% - 50px); */
+  display: grid;
+  grid-template-columns: 15px 8fr 15px 2fr 15px;
+  grid-template-rows: auto auto auto 1fr 10px auto;
+  grid-template-areas:
+    "header header header header header "
+    "nav nav nav nav nav"
+    ". section section section . "
+    ". section section section . "
+    ". . . . ."
+    "footer footer footer footer footer";
+  background-color: var(--background);
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input,
+textarea {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: large;
+}
+
+label {
+  font-family: "Yellowtail", sans-serif;
+  font-weight: 600;
+}
+
+.titleInput {
+  padding-top: 5px;
+  padding-left: 5px;
+  height: 20px;
+}
+.cardInput {
+  padding-top: 5px;
+  padding-left: 5px;
+  height: 100px;
+}
+
+.submitInput {
+  background-color: #ffffff;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Yellowtail", sans-serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.updatecardGrid {
+  width: 100%;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 10px 1fr;
+  grid-template-areas: "textUpdate . picUpdate";
+}
+
+.updateTitleInput {
+  width: 50%;
+  height: 25px;
+  border-radius: 12px;
+  border: 5px solid var(--gridborder);
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.updatecard {
+  grid-area: textUpdate;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cards);
+  border-radius: 5px;
+}
+
+.updatecardInput {
+  border-radius: 12px;
+  border: 5px solid var(--gridborder);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.updatecardTitle {
+  width: 50%;
+}
+
+.updatecardContent {
+  width: 80%;
+  height: 30%;
+}
+
+.updatePic {
+  grid-area: picUpdate;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.deleteInput {
+  width: 50%;
+  height: 500px;
+  border-radius: 12px;
+  border: 5px solid var(--gridborder);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.txt-cntr {
+  text-align: center;
+  color: black;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.jse {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ HEADER ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 15px 1fr 15px 13fr 15px 4fr 15px;
+  grid-template-areas: " . logo . navbar . user-nav .";
+  height: 11vh;
+  text-align: center;
+  /* background-color: var(--gridborder); */
+  border-bottom: 2px solid #6a659f;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo img {
+  max-height: 50px;
+}
+
+.memini {
+  font-size: 4rem;
+  color: var(--gridborder);
+  text-shadow: 1px 1px 1px var(--done), 2px 2px 1px var(--done);
+}
+
+.navbar {
+  grid-area: navbar;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.user-nav {
+  grid-area: user-nav;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.user-nav p {
+  margin-right: 20px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar li {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.navbar li a,
+.dropbtn {
+  display: inline-block;
+  color: black;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #6da68e20;
+}
+
+.navbar li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px var(--gridborder);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #008000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ FOOTER ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+footer {
+  grid-area: footer;
+  height: 3vh;
+  text-align: center;
+  background-color: white;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ NAV ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+.nav {
+  grid-area: nav;
+  height: 150px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.sub-menu {
+  padding-left: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ SECTION ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+section {
+  grid-area: section;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(2px) saturate(100%);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+  background-color: #f4f6fa;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ INSERT ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+.insert {
+  /* grid-area: insert; */
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  /* background-color: var(--cards); */
+  padding: 20px;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ CARDS ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+#cardList {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr 20px 1fr 20px 1fr 0.75fr;
+  grid-template-areas: ". statusOk . statusNok . addCard .";
+}
+
+#statusOk {
+  grid-area: statusOk;
+  background-color: var(--cards);
+  border-radius: 5px;
+  padding: 20px;
+}
+#statusNok {
+  grid-area: statusNok;
+  background-color: var(--cards);
+  border-radius: 5px;
+  padding: 20px;
+}
+#addCard {
+  grid-area: addCard;
+  background-color: var(--cards);
+  border-radius: 5px;
+  padding: 20px;
+}
+#statusOk h1,
+#statusNok h1,
+#addCard h1 {
+  color: black;
+  padding-bottom: 15px;
+}
+
+#statusOk .tab {
+  border: 4px solid var(--todo);
+}
+#statusNok .tab {
+  border: 4px solid var(--inprogress);
+}
+#addCard .tab {
+  border: 4px solid var(--done);
+}
+
+#statusOk .tab-in {
+  background-color: var(--todo2);
+}
+/* Can add: step-title-todo to class */
+
+#statusNok .tab-in {
+  background-color: var(--inprogress2);
+}
+#addCard .tab-in {
+  background-color: var(--done2);
+}
+
+.step-title {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+  backdrop-filter: blur(2px) saturate(100%);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+  background-color: white;
+  border-radius: 5px;
+}
+
+.tab-in {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 2% 50% 2% 6% 2% 20%;
+  grid-template-rows: 1.5fr 8.5fr;
+  grid-template-areas:
+    "tab-btn . tab-name tab-name tab-name . tab-swap"
+    "tab-section tab-section tab-section . tab-pic tab-pic tab-pic";
+  background-color: white;
+  padding: 0 10px 0 10px;
+}
+
+.tab-name {
+  grid-area: tab-name;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tab-name > h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 1.1rem;
+}
+
+.tab-swap {
+  grid-area: tab-swap;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tab-btn {
+  grid-area: tab-btn;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tab-section {
+  /* Max character 255 (Tinytext) */
+  grid-area: tab-section;
+  /*? Ajustement central du text part.2 */
+  display: flex;
+  overflow: hidden;
+}
+
+/*? Ajustement central du text part.2 */
+.tab-section > p {
+  font-size: 0.9rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.tab-pic {
+  grid-area: tab-pic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-pic > img {
+  max-width: 70px;
+  max-height: 70px;
+  width: 90%;
+  height: auto;
+}
+
+/*? Crée un margin toutes les 3 "tab" en commencant par la 2ème + Soustraction du border size de .tab */
+/* .tabs-container .tab:nth-child(3n + 2) {
+  margin-left: calc(2% - 10px);
+  margin-right: calc(2% - 10px);
+} */
+
+.fav-feather {
+  color: cadetblue;
+}
+.fav-img {
+  color: cadetblue;
+}
+.fav-trash {
+  color: #d33535;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ PROFILE ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+.nickname {
+  font-weight: bold;
+}
+
+.profile-pic {
+  /* margin: 2vh auto 2vh auto; */
+  width: 3vw;
+  height: 3vw;
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 100%;
+  align-items: center;
+}
+.profile-pic img {
+  width: 3vw;
+  height: 3vw;
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  z-index: 3;
+}
+.image-upload > input {
+  display: none;
+  cursor: pointer;
+}
+.pulse1 {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  max-width: 70px;
+  max-height: 70px;
+  z-index: 2;
+  opacity: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  -webkit-animation: pulsejg1 4s linear infinite;
+  animation: pulsejg1 4s linear infinite;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  transition: all ease 0.8s;
+}
+.pulse2 {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  max-width: 70px;
+  max-height: 70px;
+  z-index: 2;
+  opacity: 0;
+  border: 10px solid rgba(0, 0, 0, 0.4);
+  -webkit-animation: pulsejg2 4s linear infinite;
+  animation: pulsejg2 4s linear infinite;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 12px 5px rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  transition: all ease 0.8s;
+}
+.overlay {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #000000;
+}
+.text-ppic {
+  color: #ffffff;
+  font-size: small;
+  text-align: center;
+  margin-top: 50%;
+}
+.profile-pic:hover .overlay {
+  opacity: 0.5;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ CONNECT ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+.error-input {
+  color: red;
+  font-size: medium;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ FOOTER ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
+.footer-main {
+  display: flex;
+  justify-content: center;
+}
+.footer-center {
+  width: 50vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.footer-elem > * {
+  display: contents;
+  margin: 0;
+}
