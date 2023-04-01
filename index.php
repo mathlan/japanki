@@ -11,7 +11,7 @@ include('components/functions.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Memini</title>
+    <title>Japanki</title>
 </head>
 
 <body>
@@ -41,9 +41,12 @@ include('components/functions.php');
         if ($id == 'cardManager') {
             include("components/includes/user/cardManager.php");
         }
-        if ($id == 'dashboard') {
-            include("components/includes/user/dashboard.php");
+        if ($id == 'play') {
+            include("components/includes/user/play.php");
         }
+        // if ($id == 'dashboard') {
+        //     include("components/includes/user/dashboard.php");
+        // }
         if ($id == 'create') {
             include("components/includes/card/create.php");
         }

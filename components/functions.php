@@ -240,3 +240,16 @@ function delete_ppic($idUser)
     $stmt->execute();
     Database::disconnect();
 }
+
+//? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ UPLOAD / PROFILE PIC ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~
+
+function getDeck($id) {
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->prepare("SELECT * FROM card WHERE user = :user AND status = 2");
+    $stmt->bindValue(":user", $id);
+    $stmt->execute();
+    $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    Database::disconnect();
+    return $cards;
+}

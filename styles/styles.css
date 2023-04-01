@@ -315,17 +315,17 @@ section {
 #cardList {
   display: grid;
   grid-template-columns: 0.75fr 1fr 20px 1fr 20px 1fr 0.75fr;
-  grid-template-areas: ". statusOk . statusNok . addCard .";
+  grid-template-areas: ". statusNok . statusOk . addCard .";
 }
 
-#statusOk {
-  grid-area: statusOk;
+#statusNok {
+  grid-area: statusNok;
   background-color: var(--cards);
   border-radius: 5px;
   padding: 20px;
 }
-#statusNok {
-  grid-area: statusNok;
+#statusOk {
+  grid-area: statusOk;
   background-color: var(--cards);
   border-radius: 5px;
   padding: 20px;
@@ -336,29 +336,29 @@ section {
   border-radius: 5px;
   padding: 20px;
 }
-#statusOk h1,
 #statusNok h1,
+#statusOk h1,
 #addCard h1 {
   color: black;
   padding-bottom: 15px;
 }
 
-#statusOk .tab {
+#statusNok .tab {
   border: 4px solid var(--todo);
 }
-#statusNok .tab {
+#statusOk .tab {
   border: 4px solid var(--inprogress);
 }
 #addCard .tab {
   border: 4px solid var(--done);
 }
 
-#statusOk .tab-in {
+#statusNok .tab-in {
   background-color: var(--todo2);
 }
 /* Can add: step-title-todo to class */
 
-#statusNok .tab-in {
+#statusOk .tab-in {
   background-color: var(--inprogress2);
 }
 #addCard .tab-in {
@@ -386,7 +386,7 @@ section {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 20% 2% 50% 2% 6% 2% 20%;
+  grid-template-columns: 20% 2% 27% 2% 27% 2% 20%;
   grid-template-rows: 1.5fr 8.5fr;
   grid-template-areas:
     "tab-btn . tab-name tab-name tab-name . tab-swap"
@@ -435,8 +435,7 @@ section {
 /*? Ajustement central du text part.2 */
 .tab-section > p {
   font-size: 0.9rem;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
 }
 
 .tab-pic {

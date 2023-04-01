@@ -17,10 +17,10 @@ if (isset($_SESSION['username'])) {
         $stmt->bindParam(':id', $idcard);
         $stmt->execute();
         Database::disconnect();
-        header("Location: index.php?id=dashboard");
+        header("Location: index.php?id=cardManager");
     } else {
-        header("Location: index.php?id=dashboard");
+        header("Location: index.php?id=cardManager");
     }
 } else {
-    header("Location: index.php?id=dashboard");
+    header("Location: index.php?id=cardManager");
 }

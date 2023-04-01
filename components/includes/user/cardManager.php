@@ -8,25 +8,16 @@ if (isset($_SESSION['username'])) {
         $titleInput = htmlspecialchars($_POST['title'], ENT_QUOTES, 'UTF-8');
         $cardInput = htmlspecialchars($_POST['card'], ENT_QUOTES, 'UTF-8');
     }
-    if (empty($titleInput) && !empty($cardInput)) {
-        //* Make sure the truncated card does not cut off a word and does not exceed 20 characters.
-        $pos = strpos($cardInput, ' ', 15);
-        if ($pos) {
-            $titleInput = substr($cardInput, 0, $pos);
-        } else {
-            $titleInput = substr($cardInput, 0, 15);
-        }
-    }
-    if (!empty($_SESSION['id'] && !empty($cardInput))) {
+    if (!empty($_SESSION['id'] && !empty($titleInput) && !empty($cardInput))) {
         insert_card($id, $titleInput, $cardInput, $date, 0, 0, 1);
         $cardInput = "";
-        header("Location: index.php?id=dashboard");
+        header("Location: index.php?id=cardManager");
     }
 ?>
 <div id="cardList">
 
-    <div id="statusOk" class="tabs-container">
-        <h1 class="txt-cntr step-title">Active(s)</h1>
+    <div id="statusNok" class="tabs-container">
+        <h1 class="txt-cntr step-title">Carte(s)</h1>
         <?php
             $status = fetch_cards($_SESSION['id'], 1);
             foreach ($status as $card) {
@@ -61,8 +52,8 @@ if (isset($_SESSION['username'])) {
             }
             ?>
     </div>
-    <div id="statusNok" class="tabs-container">
-        <h1 class="txt-cntr step-title">Désactivée(s)</h1>
+    <div id="statusOk" class="tabs-container">
+        <h1 class="txt-cntr step-title">Deck</h1>
         <?php
             $statusNok = fetch_cards($_SESSION['id'], 2);
             foreach ($statusNok as $card) {
@@ -106,11 +97,11 @@ if (isset($_SESSION['username'])) {
                 <form id="create-card" class="centered" method="post">
                     <label for="card">Titre:</label>
                     <textarea id="title" class="titleInput" name="title" type="text" placeholder="Max 15 caractères"
-                        value="<?php echo !empty($title) ? $title : ''; ?>"></textarea>
+                        value="<?php echo !empty($title) ? $titleInput : ''; ?>"></textarea>
                     <br>
                     <label for="card">Carte:</label>
                     <textarea id="card" class="cardInput" name="card" type="text" placeholder="Max 225 caractères"
-                        value="<?php echo !empty($card) ? $card : ''; ?>"></textarea>
+                        value="<?php echo !empty($card) ? $cardInput : ''; ?>"></textarea>
                     <div class="daytime">
                         <p class="date"><?php echo "Date du jour: " . date("d-m-Y"); ?></p>
                         <!-- <p class="time"><?php echo "Heure: " . date("H:i:s"); ?></p> -->
