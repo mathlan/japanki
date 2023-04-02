@@ -4,7 +4,7 @@
         <div class="navbar">
             <ul>
                 <li><a href="index.php?id=cardManager"><span class="toDoFont">Ajouter des cartes</span></a></li>
-                <li><a href="index.php?id=play"><span class="inProgressFont">Jouer</span></a></li>
+                <li><a href="index.php?id=play"><span class="inProgressFont" style="color: #e21e42;">Jouer</span></a></li>
             </ul>
         </div>
     </div>

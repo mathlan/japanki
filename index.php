@@ -11,6 +11,7 @@ include('components/functions.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Japanki</title>
 </head>
 
@@ -44,9 +45,9 @@ include('components/functions.php');
         if ($id == 'play') {
             include("components/includes/user/play.php");
         }
-        // if ($id == 'dashboard') {
-        //     include("components/includes/user/dashboard.php");
-        // }
+        if ($id == 'stats') {
+            include("components/includes/user/stats.php");
+        }
         if ($id == 'create') {
             include("components/includes/card/create.php");
         }

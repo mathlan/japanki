@@ -241,9 +241,11 @@ function delete_ppic($idUser)
     Database::disconnect();
 }
 
-//? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ UPLOAD / PROFILE PIC ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~
+//? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ PLAY ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~
 
-function getDeck($id) {
+// Récupère le deck du joueur
+function getDeck($id)
+{
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $pdo->prepare("SELECT * FROM card WHERE user = :user AND status = 2");
@@ -252,4 +254,51 @@ function getDeck($id) {
     $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
     Database::disconnect();
     return $cards;
+}
+
+// Stock le résultat du joueur
+function update_known($id, $known)
+{
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "UPDATE card SET known=:known WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':known', $known);
+    $stmt->execute();
+    Database::disconnect();
+}
+
+// Stats
+function fetch_stats($user)
+{
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->prepare("SELECT known FROM card WHERE user = :user");
+    $stmt->bindValue(":user", $user);
+    $stmt->execute();
+    $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $worst = 0;
+    $bad = 0;
+    $normal = 0;
+    $good = 0;
+    $best = 0;
+
+    foreach ($stats as $stat) {
+        if ($stat['known'] == 1) {
+            $worst++;
+        } else if ($stat['known'] == 2) {
+            $bad++;
+        } else if ($stat['known'] == 3) {
+            $normal++;
+        } else if ($stat['known'] == 4) {
+            $good++;
+        } else if ($stat['known'] == 5) {
+            $best++;
+        }
+    }
+    $arrayStats = [$worst, $bad, $normal, $good, $best];
+    return $arrayStats;
+    Database::disconnect();
 }

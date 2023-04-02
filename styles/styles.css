@@ -269,7 +269,7 @@ footer {
   grid-area: footer;
   height: 3vh;
   text-align: center;
-  background-color: white;
+  background-color: var(--background);
 }
 
 /* ? ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ NAV ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ */
@@ -345,12 +345,15 @@ section {
 
 #statusNok .tab {
   border: 4px solid var(--todo);
+  box-sizing: border-box;
 }
 #statusOk .tab {
   border: 4px solid var(--inprogress);
+  box-sizing: border-box;
 }
 #addCard .tab {
   border: 4px solid var(--done);
+  box-sizing: border-box;
 }
 
 #statusNok .tab-in {
